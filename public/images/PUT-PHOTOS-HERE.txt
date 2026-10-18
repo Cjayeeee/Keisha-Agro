@@ -1,0 +1,1 @@
+Put your real farm and fruit photos here, then reference them in src/content.ts (photos).

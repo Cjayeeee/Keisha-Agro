@@ -1,0 +1,244 @@
+@import 'tailwindcss';
+
+/* Self-hosted Latin subsets (OFL). Anton + Inter Tight are preloaded in index.html. */
+@font-face {
+  font-family: 'Anton';
+  src: url('/fonts/anton-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-latin-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight Variable';
+  src: url('/fonts/inter-tight-latin-var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+/* Metric-matched fallback to limit layout shift while Anton loads */
+@font-face {
+  font-family: 'Anton Fallback';
+  src: local('Impact'), local('Arial Narrow Bold'), local('Arial Bold');
+  size-adjust: 92%;
+}
+
+/* ── Design tokens ─────────────────────────────────────────── */
+@theme {
+  --color-forest: #173d2c;
+  --color-forest-deep: #0f2a1e;
+  --color-pitaya: #e52d72;
+  --color-pitaya-deep: #b8195a;
+  --color-ivory: #f7f3e9;
+  --color-sand: #ece5d3;
+  --color-leaf: #8ba66a;
+  --color-ink: #171b17;
+  --color-mute: #5d625a;
+
+  --font-display: 'Anton', 'Anton Fallback', 'Impact', sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+  --font-sans: 'Inter Tight Variable', 'Helvetica Neue', Arial, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  scroll-padding-top: 80px;
+}
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+::selection {
+  background: var(--color-pitaya);
+  color: var(--color-ivory);
+}
+:focus-visible {
+  outline: 2px solid var(--color-pitaya);
+  outline-offset: 3px;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Display type: tight, uppercase, condensed */
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+.serif-i {
+  font-family: var(--font-serif);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+}
+
+/* Halftone dot field (reference-inspired texture, re-tuned) */
+.halftone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--dot, rgba(255, 255, 255, 0.22)) 1.4px, transparent 1.6px);
+  background-size: 9px 9px;
+  -webkit-mask-image: var(--mask, linear-gradient(100deg, transparent 5%, #000 45%, transparent 70%, #000 95%));
+  mask-image: var(--mask, linear-gradient(100deg, transparent 5%, #000 45%, transparent 70%, #000 95%));
+}
+
+/* Split-text line masks */
+.line-mask {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.04em;
+  margin-bottom: -0.04em;
+}
+
+/* Link underline that draws in from the left */
+.u-link {
+  background: linear-gradient(currentColor, currentColor) no-repeat 100% 100% / 0 1px;
+  transition: background-size 0.5s var(--ease-out-expo);
+}
+.u-link:hover,
+.u-link:focus-visible {
+  background-position: 0 100%;
+  background-size: 100% 1px;
+}
+
+/* Film strip infinite scroll */
+@keyframes strip-up {
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+.strip-track {
+  will-change: transform;
+  animation: strip-up 38s linear infinite;
+}
+
+.strip-mask {
+  -webkit-mask-image: linear-gradient(180deg, #000 22%, transparent 48%);
+  mask-image: linear-gradient(180deg, #000 22%, transparent 48%);
+}
+@media (min-width: 1024px) {
+  .strip-mask {
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+    mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+  }
+}
+
+/* Marquee */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.scroll-cue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  animation: cue 2.2s var(--ease-in-out-quart) infinite;
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(247, 243, 233, 0.35);
+  padding: 0.9rem 0 0.7rem;
+  color: var(--color-ivory);
+  font-size: 1.05rem;
+  border-radius: 0;
+  transition: border-color 0.3s;
+}
+.field::placeholder {
+  color: rgba(247, 243, 233, 0.45);
+}
+.field:focus {
+  outline: none;
+  border-color: var(--color-pitaya);
+}
+.field[aria-invalid='true'] {
+  border-color: #ff8db5;
+}
+select.field option {
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Anatomy: vertical by default; horizontal on desktop with motion allowed
+   (must match mq.desktop in lib/gsap.ts) */
+.anat-panel {
+  min-height: 88svh;
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .anat-track {
+    flex-direction: row;
+    width: max-content;
+    height: 100svh;
+  }
+  .anat-panel {
+    height: 100%;
+    min-height: 0;
+    width: 72vw;
+    flex-shrink: 0;
+  }
+  .anat-intro {
+    width: 58vw;
+  }
+  .anat-outro {
+    width: 46vw;
+  }
+}
