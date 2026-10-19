@@ -74,7 +74,7 @@ export function Product() {
   )
 
   const wa = contact.whatsapp
-    ? `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(`Hello Keisha Agro Farm, I'd like to enquire about ${v.name} dragon fruit.`)}`
+    ? `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(`Hello Keisha Agro Farm, I'd like to enquire about your ${v.name.toLowerCase()}.`)}`
     : ''
 
   return (
@@ -98,9 +98,6 @@ export function Product() {
               <DragonFruit key={active} view="cut" flesh={v.flesh} seed={40 + active} shadow={false} className="w-full drop-shadow-[0_40px_40px_rgba(23,27,23,0.25)]" />
             </div>
           </div>
-          <p className="absolute bottom-5 left-5 max-w-[16rem] text-[11px] leading-snug text-ink/65">
-            Swap this artwork for real photography of your fruit in <code>content.ts</code>.
-          </p>
         </div>
 
         {/* Info */}

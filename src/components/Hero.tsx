@@ -6,24 +6,10 @@ import { Photo } from './Photo'
 import { Button } from './Button'
 
 function FilmStrip() {
-  const cards = [
-    <div key="a" className="grid aspect-[3/4] place-items-center bg-sand">
-      <DragonFruit view="whole" seed={11} className="w-[62%]" title="" />
-    </div>,
-    <Photo key="p0" shot={photos.strip[0]} tone="forest" motif="flower" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" eager />,
-    <div key="b" className="grid aspect-[3/4] place-items-center bg-leaf/70">
-      <DragonFruit view="cut" flesh="red" seed={4} shadow={false} className="w-[70%]" title="" />
-    </div>,
-    <Photo key="p1" shot={photos.strip[1]} tone="pitaya" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" eager />,
-    <div key="c" className="grid aspect-[3/4] place-items-center bg-forest">
-      <DragonFruit view="flower" className="w-[82%]" title="" />
-    </div>,
-    <Photo key="p2" shot={photos.strip[2]} tone="sand" motif="cut" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" />,
-    <div key="d" className="grid aspect-[3/4] place-items-center bg-ink">
-      <DragonFruit view="cut" flesh="red" seed={9} shadow={false} className="w-[70%]" title="" />
-    </div>,
-    <Photo key="p3" shot={photos.strip[3]} tone="leaf" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" />,
-  ]
+  // Real farm photos only; the first two load eagerly because they're on screen at load
+  const cards = photos.strip.map((shot, i) => (
+    <Photo key={i} shot={shot} className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" eager={i < 2} />
+  ))
   return (
     <div
       aria-hidden

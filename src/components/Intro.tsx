@@ -18,8 +18,8 @@ export function Intro() {
           q('[data-par]').forEach((el) => {
             gsap.fromTo(
               el.querySelector('[data-inner]'),
-              { yPercent: -6 },
-              { yPercent: 6, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } },
+              { yPercent: -1.5 },
+              { yPercent: 1.5, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } },
             )
           })
           gsap.to(q('[data-float]'), {
@@ -45,9 +45,9 @@ export function Intro() {
       </div>
 
       <div className="mt-[10vh] grid gap-10 lg:grid-cols-12 lg:gap-x-8">
-        <div className="relative lg:col-span-5 lg:col-start-2">
+        <div className="relative w-[82%] sm:w-[62%] lg:w-auto lg:col-span-4 lg:col-start-2">
           <div data-reveal data-par>
-            <Photo shot={photos.intro[0]} tone="forest" motif="whole" className="aspect-[4/5] w-full" />
+            <Photo shot={photos.intro[0]} tone="forest" motif="whole" className="aspect-[3/4] w-full [&_[data-inner]]:!inset-[-2%]" />
           </div>
           <div data-float className="absolute -bottom-10 -right-2 w-[42%] sm:-right-12 lg:-right-20">
             <div data-reveal>
@@ -60,7 +60,7 @@ export function Intro() {
             Keisha Agro Farm grows organic dragon fruits and sells them directly to the people who eat, cook with and stock them.
           </p>
           <p data-fade className="leading-relaxed text-mute">
-            [Add two or three sentences in your own words: when the farm started, where it is, and why you chose to grow dragon fruit.]
+            We started the farm in 2020 with one goal: to grow high-quality organic dragon fruit. We chose dragon fruit because it suits our growing conditions, and it lets us bring fresh, nutritious fruit to our customers.
           </p>
           <a data-fade href="#farm" className="u-link w-fit font-display text-xl uppercase">
             Read the farm story →

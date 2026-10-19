@@ -9,22 +9,14 @@ npm run build     # production build → dist/
 npm run preview   # serve the production build
 ```
 
-## Before launch: replace the placeholders
+## Editing the content
 
-**All business content lives in `src/content.ts`.** Anything written in `[square brackets]` is a placeholder. The site doesn't make claims you haven't confirmed, so fill these in yourself:
+**All business content lives in `src/content.ts`**: contact details, Instagram link, the fruit and its specs, the growing steps, the farm story and the "Why Keisha" points. All of it is filled in with the farm's real details. Edit the text there and the whole site updates.
 
-| What | Where |
-| --- | --- |
-| Email, phone, WhatsApp, location, harvest season | `contact` |
-| Social profile URLs | `socials` |
-| Varieties you actually sell (flesh colour drives the artwork) | `varieties` |
-| Sizes, packaging, order types, pricing | `specs` |
-| Your growing, harvesting and packing practice | `process` |
-| Farm story: land, people, season | `farmStory` |
-| Differentiators (name a certification only if you hold one) | `reasons` |
-| Photos | `photos` (see below) |
-| Logo | `src/components/Logo.tsx` (typographic placeholder) |
-| Domain, OG image | `index.html` (canonical, `og:image` → `/public/og-image.jpg`) |
+Still to do before launch:
+- **Logo:** `src/components/Logo.tsx` is a typographic stand-in until the real logo is ready.
+- **Domain:** add the canonical link in `index.html` once the domain is known.
+- **Enquiry form sending:** see "Enquiry form" below. Until it's connected, the form offers visitors their email app instead.
 
 ### Photos
 Your originals stay in `public/images/`. The site uses optimised copies in `public/images/opt/` (WebP, a large and an 800px version of each), and `src/content.ts → photos` decides which photo appears where. To add a new photo, export it as `name.webp` (about 1600px on the long edge) and `name-800.webp`, put both in `opt/`, and point a `src` at `/images/opt/name.webp`. `position` sets which part of the photo stays in view when a frame crops it.
@@ -72,4 +64,4 @@ Section order: Preloader → Header → Hero → Marquee → Intro → Statement
 CLS was 0 on both. LCP was 2.6s on mobile and 0.7s on desktop. Most of the remaining cost is main-thread time from the motion system and inline SVG artwork. Scores will change once real photography is added, so re-run Lighthouse after adding images.
 
 ## Fonts
-Anton (display), Bodoni Moda Italic (accent words) and Inter Tight (text). All three are SIL Open Font License, self-hosted in `public/fonts`, and limited to the Latin character set.
+Anton (display), Story Script (accent words) and Inter Tight (text). All three are SIL Open Font License, self-hosted in `public/fonts`, and limited to the Latin character set.

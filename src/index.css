@@ -8,10 +8,10 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Bodoni Moda';
-  src: url('/fonts/bodoni-moda-latin-italic-var.woff2') format('woff2-variations');
-  font-weight: 400 900;
-  font-style: italic;
+  font-family: 'Story Script';
+  src: url('/fonts/story-script-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
@@ -40,7 +40,7 @@
   --color-mute: #5d625a;
 
   --font-display: 'Anton', 'Anton Fallback', 'Impact', sans-serif;
-  --font-serif: 'Bodoni Moda', 'Didot', 'Bodoni 72', 'Times New Roman', serif;
+  --font-serif: 'Story Script', 'Brush Script MT', cursive;
   --font-sans: 'Inter Tight Variable', 'Helvetica Neue', Arial, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -83,10 +83,12 @@ img {
   font-weight: 400;
 }
 .serif-i {
+  /* Accent words: Story Script (a script face, so no forced italic) */
   font-family: var(--font-serif);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
   text-transform: none;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 .outline-text {
   /* Only the fill is transparent, so the stroke keeps the element's text colour */

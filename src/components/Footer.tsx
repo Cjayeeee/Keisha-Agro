@@ -114,7 +114,7 @@ export function Footer() {
           ))}
           <span data-wm className="relative inline-block">
             ı
-            <span data-wm-dot className="absolute left-1/2 top-[-0.035em] block size-[0.17em] -translate-x-1/2 rounded-full bg-pitaya" />
+            <span data-wm-dot className="absolute left-[calc(50%+0.035em)] top-[-0.035em] block size-[0.17em] -translate-x-1/2 rounded-full bg-pitaya" />
           </span>
           {'sha'.split('').map((c, i) => (
             <span key={i} data-wm className="inline-block">

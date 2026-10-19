@@ -19,18 +19,16 @@ export const brand = {
 
 /** Contact details. Leave a value as an empty string to hide it. */
 export const contact = {
-  email: '[hello@yourfarm.com]',
-  phone: '[+00 00000 00000]',
+  email: 'keishaagro@gmail.com',
+  phone: '+91 84849 35443',
   /** International format, digits only, e.g. "919876543210". Empty = WhatsApp button hidden. */
-  whatsapp: '',
+  whatsapp: '918484935443',
   location: 'Nimbavi, Shrigonda',
-  season: '[Harvest season, e.g. Month to Month]',
+  season: 'June to November',
 }
 
 export const socials: { label: string; href: string }[] = [
-  { label: 'Instagram', href: '#' }, // TODO: real profile URL
-  { label: 'Facebook', href: '#' }, // TODO
-  { label: 'YouTube', href: '#' }, // TODO
+  { label: 'Instagram', href: 'https://www.instagram.com/keishaagrofarm' },
 ]
 
 export const nav = [
@@ -75,9 +73,9 @@ const todo = {
 
 export const photos = {
   /** Tilted strip in the hero */
-  strip: [shots.fruit, shots.flower, shots.halved, shots.rows] as Shot[],
+  strip: [shots.halved, shots.flower, shots.fruit, shots.canopy, shots.weighing, shots.flowerSky, shots.rows, shots.planting] as Shot[],
   /** Who-we-are section: large frame + small overlapping frame */
-  intro: [shots.rows, shots.halved] as Shot[],
+  intro: [shots.grower, shots.halved] as Shot[],
   /** Thumbnails under the product details */
   product: [shots.halved, shots.fruit, shots.weighing] as Shot[],
   /** Indexed by `process[].shots` */
@@ -115,15 +113,16 @@ export const anatomy = [
  * Remove any entry you do not sell.
  */
 export const varieties = [
-  { name: '[Variety name]', flesh: 'red' as const, note: '[Short description: taste, colour, size]' },
+  { name: 'Red dragon fruit', flesh: 'red' as const, note: 'Very sweet, with deep magenta flesh. Around 350–650 g per fruit.' },
 ]
 
 /** Product spec rows. Fill in only what is confirmed. */
 export const specs = [
   { label: 'Grown at', value: 'Nimbavi, Shrigonda' },
-  { label: 'Sizes / grades', value: '[e.g. by weight per fruit]' },
-  { label: 'Packaging', value: '[e.g. box sizes]' },
-  { label: 'Order types', value: '[Retail / Bulk, to confirm]' },
+  { label: 'Sorting', value: 'By size and quality' },
+  { label: 'Packs', value: '1 kg, 2 kg, 4 kg and 10 kg' },
+  { label: 'Orders', value: 'Retail and bulk, from 1 kg' },
+  { label: 'Season', value: 'June to November' },
   { label: 'Pricing', value: 'On request' },
 ]
 
@@ -132,25 +131,25 @@ export const process = [
   {
     no: '01',
     title: 'The Land',
-    body: 'Dragon fruit is a climbing cactus that needs sun and free-draining soil. [Describe your land and how you prepare it.]',
+    body: 'We prepare the land with organic farming practices. Drip irrigation delivers water straight to the roots, while mulch holds in moisture and keeps weeds down.',
     shots: [0, 1],
   },
   {
     no: '02',
     title: 'The Cactus',
-    body: 'Each plant climbs a support post and is trained into a canopy where the fruit hangs. [Describe your planting and care.]',
+    body: 'Each plant climbs a sturdy support post and is fed with organic manure and natural soil enrichment. We look after the soil first, and the plants follow.',
     shots: [1, 2],
   },
   {
     no: '03',
     title: 'The Harvest',
-    body: 'Fruit is picked by hand once its skin has turned fully coloured. [Describe when and how you harvest.]',
+    body: 'Every fruit is handpicked at the right stage of ripeness for colour, freshness and quality, and handled carefully so it isn’t bruised.',
     shots: [3, 2],
   },
   {
     no: '04',
     title: 'The Packing',
-    body: 'Fruit is sorted and packed at the farm before it leaves. [Describe your grading, packing and dispatch.]',
+    body: 'We sort the harvest by size and quality, then pack it carefully to keep it fresh on its way from our farm to you.',
     shots: [4, 5],
   },
 ]
@@ -160,26 +159,26 @@ export const farmStory = [
   {
     kicker: 'The Land',
     title: 'Where it grows',
-    body: '[Tell visitors where Keisha Agro Farm is, how large it is, and what makes the place special.]',
+    body: 'Our farm is in Nimbavi, near Shrigonda in Maharashtra. The land and local climate suit dragon fruit well, and careful water management keeps the plants healthy.',
   },
   {
     kicker: 'The People',
     title: 'Who grows it',
-    body: '[Introduce the family or team behind the farm: who they are and how they started growing dragon fruit.]',
+    body: 'Keisha Agro Farm is run by Hrushikesh and Anuradha, with the whole family involved in its day-to-day care and growth. Our family is at the heart of every season.',
   },
   {
     kicker: 'The Season',
     title: 'When it’s ready',
-    body: '[Explain your harvest season and when buyers should get in touch to secure fruit.]',
+    body: 'Our fruit is in season from June to November. Get in touch early to check availability and reserve fresh fruit for your needs.',
   },
 ]
 
 /** Differentiators. Keep only what is true. */
 export const reasons = [
   { no: '01', title: 'Straight from the grower', body: 'You deal with the farm that grows the fruit, with no middle layer between field and enquiry.' },
-  { no: '02', title: 'Grown organically', body: '[Describe your organic practices. Name a certification only if you hold one.]' },
-  { no: '03', title: 'Retail & bulk', body: '[Confirm the order types and quantities you can supply.]' },
-  { no: '04', title: '[Your differentiator]', body: '[Freshness, varieties, packaging or distribution, whatever is genuinely yours.]' },
+  { no: '02', title: 'Grown organically', body: 'We feed the soil with organic compost and natural farming practices, and avoid synthetic chemical pesticides and fertilisers to protect its health.' },
+  { no: '03', title: 'Retail & bulk', body: 'For families and businesses alike, from a single 1 kg pack to 10 kg boxes.' },
+  { no: '04', title: 'Family care, every step', body: 'From nurturing the plants to handpicking and packing, our family looks after every step, so fresh fruit travels straight from Nimbavi to you.' },
 ]
 
 export const enquiryTypes = ['Retail order', 'Bulk / wholesale', 'Availability', 'Something else']

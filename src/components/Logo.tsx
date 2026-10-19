@@ -6,7 +6,7 @@ export function Logo({ light = false, className = '' }: { light?: boolean; class
         ke
         <span className="relative">
           ı
-          <span aria-hidden className="absolute left-1/2 top-[0.05em] size-[0.24em] -translate-x-1/2 rounded-full bg-pitaya" />
+          <span aria-hidden className="absolute left-[calc(50%+0.0275em)] top-[0.05em] size-[0.24em] -translate-x-1/2 rounded-full bg-pitaya" />
         </span>
         sha
       </span>
