@@ -6,7 +6,7 @@ import { DragonFruit } from './DragonFruit'
  * Short brand intro (~1.5s). Shown once per session; skipped entirely for
  * reduced-motion users. Content underneath is already rendered & usable.
  */
-export function Preloader({ onDone }: { onDone: () => void }) {
+export function Preloader({ onReveal, onDone }: { onReveal: () => void; onDone: () => void }) {
   const root = useRef<HTMLDivElement>(null)
 
   useGSAP(
@@ -17,6 +17,8 @@ export function Preloader({ onDone }: { onDone: () => void }) {
         .to('[data-pl-bar]', { scaleX: 1, duration: 0.9, ease: ease.inOut }, 0.1)
         .to('[data-pl-fruit]', { scale: 14, duration: 0.9, ease: 'power4.in' }, 1.0)
         .to('[data-pl-char]', { yPercent: -110, duration: 0.5, ease: 'power3.in', stagger: 0.02 }, 1.0)
+        // Hand over to the hero as the wipe begins, so both motions overlap
+        .call(onReveal, [], 1.3)
         .to(root.current, { clipPath: 'inset(0% 0% 100% 0%)', duration: 0.9, ease: ease.inOut }, 1.35)
     },
     { scope: root },
@@ -31,7 +33,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
     >
       <div className="flex flex-col items-center gap-6">
         <div data-pl-fruit className="w-16">
-          <DragonFruit view="cut" flesh="white" shadow={false} title="" />
+          <DragonFruit view="cut" flesh="red" shadow={false} title="" />
         </div>
         <div className="flex overflow-hidden font-sans text-4xl font-[800] tracking-[-0.055em]">
           {'keisha'.split('').map((c, i) => (

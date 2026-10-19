@@ -73,7 +73,7 @@ export function Field() {
               </span>
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-mute lg:ml-auto lg:max-w-sm">
-              Moments from the farm, the harvest and the fruit itself. [Replace these frames with your own photography.]
+              Moments from the farm, from planting day and the first flowers to the fruit on the scale.
             </p>
             <div className="mt-8 lg:flex lg:justify-end">
               <Button href="#enquire" variant="ink">

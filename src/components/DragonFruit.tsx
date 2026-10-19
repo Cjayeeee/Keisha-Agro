@@ -2,7 +2,7 @@ import { memo, useId, useMemo } from 'react'
 
 /**
  * Hand-built vector illustration of a dragon fruit (pitaya).
- * Generic botanical artwork used as a brand graphic — NOT a photo of
+ * Generic botanical artwork used as a brand graphic, NOT a photo of
  * Keisha Agro Farm produce. Real photography lives in <Photo />.
  */
 
@@ -87,7 +87,7 @@ function buildSeeds(seed: number, count: number, cx: number, cy: number, rx: num
 function DragonFruitBase({ view = 'whole', flesh = 'red', className, title, seed = 7, shadow = true }: Props) {
   const uid = useId().replace(/:/g, '')
   const whole = useMemo(() => buildWhole(seed), [seed])
-  // All seeds drawn as ONE path (keeps the DOM small — hundreds of seeds, one node)
+  // All seeds drawn as ONE path (keeps the DOM small: hundreds of seeds, one node)
   const seedPath = useMemo(
     () =>
       buildSeeds(seed + 3, 380, 200, 240, 128, 160)

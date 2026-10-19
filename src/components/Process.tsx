@@ -55,7 +55,7 @@ export function Process() {
                   </span>
                 </h3>
               </div>
-              {/* Photo pair — desktop hover only, decorative */}
+              {/* Photo pair: desktop hover only, decorative */}
               <div aria-hidden className="pointer-events-none hidden h-28 items-center justify-center gap-3 lg:col-span-3 lg:flex">
                 {p.shots.map((s, i) => (
                   <div

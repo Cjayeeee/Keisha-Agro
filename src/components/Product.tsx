@@ -85,7 +85,7 @@ export function Product() {
           <div className="absolute left-5 right-5 top-5 flex justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/65">
             <span className="overflow-hidden">
               <span data-swap-txt className="block">
-                Fig. 0{active + 1} — {v.flesh === 'red' ? 'Red flesh' : 'White flesh'}
+                Fig. 0{active + 1} / {v.flesh === 'red' ? 'Red flesh' : 'White flesh'}
               </span>
             </span>
             <span>Illustration</span>
@@ -112,27 +112,29 @@ export function Product() {
             Organic dragon <span className="serif-i text-pitaya">fruit.</span>
           </h2>
 
-          <div data-fade role="tablist" aria-label="Varieties" className="mt-10 flex flex-wrap gap-2">
-            {varieties.map((x, i) => (
-              <button
-                key={i}
-                role="tab"
-                type="button"
-                id={`var-tab-${i}`}
-                aria-selected={active === i}
-                aria-controls="var-panel"
-                onClick={() => setActive(i)}
-                className={`flex h-11 items-center gap-2 px-4 text-sm font-medium ring-1 transition-colors duration-300 ${
-                  active === i ? 'bg-ink text-ivory ring-ink' : 'text-ink ring-ink/20 hover:ring-ink'
-                }`}
-              >
-                <span aria-hidden className={`size-3 rounded-full ring-2 ring-pitaya ${x.flesh === 'red' ? 'bg-pitaya-deep' : 'bg-ivory'}`} />
-                {x.name}
-              </button>
-            ))}
-          </div>
+          {varieties.length > 1 && (
+            <div data-fade role="tablist" aria-label="Varieties" className="mt-10 flex flex-wrap gap-2">
+              {varieties.map((x, i) => (
+                <button
+                  key={i}
+                  role="tab"
+                  type="button"
+                  id={`var-tab-${i}`}
+                  aria-selected={active === i}
+                  aria-controls="var-panel"
+                  onClick={() => setActive(i)}
+                  className={`flex h-11 items-center gap-2 px-4 text-sm font-medium ring-1 transition-colors duration-300 ${
+                    active === i ? 'bg-ink text-ivory ring-ink' : 'text-ink ring-ink/20 hover:ring-ink'
+                  }`}
+                >
+                  <span aria-hidden className={`size-3 rounded-full ring-2 ring-pitaya ${x.flesh === 'red' ? 'bg-pitaya-deep' : 'bg-ivory'}`} />
+                  {x.name}
+                </button>
+              ))}
+            </div>
+          )}
 
-          <div id="var-panel" role="tabpanel" aria-labelledby={`var-tab-${active}`} className="mt-6">
+          <div id="var-panel" {...(varieties.length > 1 ? { role: 'tabpanel', 'aria-labelledby': `var-tab-${active}` } : {})} className="mt-6">
             <p data-fade className="text-lg leading-relaxed text-mute">
               {v.note}
             </p>
@@ -162,7 +164,7 @@ export function Product() {
           </div>
 
           <div data-fade className="mt-12 grid grid-cols-3 gap-3">
-            {photos.field.slice(0, 3).map((s, i) => (
+            {photos.product.map((s, i) => (
               <Photo key={i} shot={s} tone={(['forest', 'pitaya', 'leaf'] as const)[i]} className="aspect-[3/4]" sizes="15vw" />
             ))}
           </div>

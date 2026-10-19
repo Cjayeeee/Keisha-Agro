@@ -12,7 +12,7 @@ import { Button } from './Button'
  * Sending: set VITE_FORM_ENDPOINT (see .env.example) to any service that
  * accepts a JSON POST (Formspree, Basin, your own API…). Without it the form
  * still validates, but says plainly that online sending isn't connected and
- * offers the visitor an email fallback — it never fakes a "sent" message.
+ * offers the visitor an email fallback; it never fakes a "sent" message.
  */
 const ENDPOINT = (import.meta.env.VITE_FORM_ENDPOINT as string | undefined)?.trim() || ''
 
@@ -31,7 +31,7 @@ function validate(v: Values): Errors {
   if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim())) e.email = 'That email address doesn’t look right.'
   if (hasPhone && v.phone.replace(/[^\d]/g, '').length < 7) e.phone = 'That phone number looks too short.'
   if (!v.type) e.type = 'Choose what your enquiry is about.'
-  if (v.message.trim().length < 10) e.message = 'A short message helps — at least a sentence.'
+  if (v.message.trim().length < 10) e.message = 'A short message helps: at least a sentence.'
   return e
 }
 
@@ -98,7 +98,7 @@ export function Enquiry() {
     ]
       .filter((x): x is string => typeof x === 'string')
       .join('\n')
-    return `mailto:${contact.email}?subject=${encodeURIComponent(`Enquiry — ${values.type}`)}&body=${encodeURIComponent(body)}`
+    return `mailto:${contact.email}?subject=${encodeURIComponent(`Enquiry: ${values.type}`)}&body=${encodeURIComponent(body)}`
   }
 
   const submit = async (e: FormEvent) => {
@@ -156,7 +156,7 @@ export function Enquiry() {
         <div data-ebody className="mt-[8vh] grid gap-14 lg:grid-cols-12 lg:gap-x-10">
           <div className="lg:col-span-4">
             <p data-efade className="max-w-sm border-l border-ivory/25 pl-5 text-lg leading-relaxed text-ivory/80">
-              Tell us what you’re looking for — a box for home, stock for your shop, or a regular bulk supply — and the farm will get back to you.
+              Tell us what you’re looking for, whether a box for home, stock for your shop or a regular bulk supply, and the farm will get back to you.
             </p>
             <ul className="mt-10 flex flex-col gap-4">
               <li data-efade className="flex items-center gap-3">
@@ -227,7 +227,7 @@ export function Enquiry() {
               {err('phone')}
             </div>
             <p id="contact-hint" className="-mt-5 text-xs text-ivory/65 sm:col-span-2">
-              Give us an email or a phone number — whichever you prefer.
+              Give us an email or a phone number, whichever you prefer.
             </p>
             <div data-efade className="sm:col-span-2">
               <label htmlFor="quantity" className={label}>
@@ -260,7 +260,7 @@ export function Enquiry() {
                 )}
                 {status === 'sent' && (
                   <span className="flex items-center gap-2 text-leaf">
-                    <Check className="size-4" aria-hidden /> Thank you — your enquiry has been sent. The farm will reply soon.
+                    <Check className="size-4" aria-hidden /> Thank you, your enquiry has been sent. The farm will reply soon.
                   </span>
                 )}
                 {status === 'error' && (

@@ -47,11 +47,11 @@ export function Intro() {
       <div className="mt-[10vh] grid gap-10 lg:grid-cols-12 lg:gap-x-8">
         <div className="relative lg:col-span-5 lg:col-start-2">
           <div data-reveal data-par>
-            <Photo shot={photos.farm[0]} tone="forest" motif="whole" className="aspect-[4/5] w-full" />
+            <Photo shot={photos.intro[0]} tone="forest" motif="whole" className="aspect-[4/5] w-full" />
           </div>
           <div data-float className="absolute -bottom-10 -right-2 w-[42%] sm:-right-12 lg:-right-20">
             <div data-reveal>
-              <Photo shot={photos.strip[2]} tone="pitaya" motif="cut" className="aspect-square w-full ring-8 ring-ivory" />
+              <Photo shot={photos.intro[1]} tone="pitaya" motif="cut" className="aspect-square w-full ring-8 ring-ivory" />
             </div>
           </div>
         </div>

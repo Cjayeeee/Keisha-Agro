@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap, useGSAP, ease, mq } from '../lib/gsap'
 import { brand, contact, photos } from '../content'
 import { DragonFruit } from './DragonFruit'
@@ -10,19 +10,19 @@ function FilmStrip() {
     <div key="a" className="grid aspect-[3/4] place-items-center bg-sand">
       <DragonFruit view="whole" seed={11} className="w-[62%]" title="" />
     </div>,
-    <Photo key="p0" shot={photos.strip[0]} tone="forest" motif="flower" className="aspect-[3/4]" eager />,
+    <Photo key="p0" shot={photos.strip[0]} tone="forest" motif="flower" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" eager />,
     <div key="b" className="grid aspect-[3/4] place-items-center bg-leaf/70">
       <DragonFruit view="cut" flesh="red" seed={4} shadow={false} className="w-[70%]" title="" />
     </div>,
-    <Photo key="p1" shot={photos.strip[1]} tone="pitaya" className="aspect-[3/4]" eager />,
+    <Photo key="p1" shot={photos.strip[1]} tone="pitaya" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" eager />,
     <div key="c" className="grid aspect-[3/4] place-items-center bg-forest">
       <DragonFruit view="flower" className="w-[82%]" title="" />
     </div>,
-    <Photo key="p2" shot={photos.strip[2]} tone="sand" motif="cut" className="aspect-[3/4]" />,
+    <Photo key="p2" shot={photos.strip[2]} tone="sand" motif="cut" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" />,
     <div key="d" className="grid aspect-[3/4] place-items-center bg-ink">
-      <DragonFruit view="cut" flesh="white" seed={9} shadow={false} className="w-[70%]" title="" />
+      <DragonFruit view="cut" flesh="red" seed={9} shadow={false} className="w-[70%]" title="" />
     </div>,
-    <Photo key="p3" shot={photos.strip[3]} tone="leaf" className="aspect-[3/4]" />,
+    <Photo key="p3" shot={photos.strip[3]} tone="leaf" className="aspect-[3/4]" sizes="(min-width:1024px) 15vw, 34vw" />,
   ]
   return (
     <div
@@ -57,13 +57,24 @@ function Badge() {
 
 export function Hero({ ready }: { ready: boolean }) {
   const root = useRef<HTMLElement>(null)
+  const intro = useRef<gsap.core.Timeline | null>(null)
+  const readyRef = useRef(ready)
+  readyRef.current = ready
+
+  // Play the (already-primed) intro the moment the preloader starts to leave.
+  useEffect(() => {
+    if (ready) intro.current?.play()
+  }, [ready])
 
   useGSAP(
     () => {
-      if (!ready) return
       const mm = gsap.matchMedia()
       mm.add(mq.motion, () => {
-        const tl = gsap.timeline({ defaults: { ease: ease.out } })
+        // Built paused on mount, so the hidden start state is applied
+        // underneath the preloader, so the headline never flashes in full first.
+        const tl = gsap.timeline({ paused: true, defaults: { ease: ease.out } })
+        intro.current = tl
+        if (readyRef.current) tl.play()
         tl.from('[data-char]', { yPercent: 115, duration: 1.3, stagger: 0.045 })
           .from('[data-fruit-o]', { scale: 0.1, rotate: -120, duration: 1.7 }, 0.1)
           .from('[data-to]', { yPercent: 60, autoAlpha: 0, duration: 1.1 }, 0.45)
@@ -94,7 +105,7 @@ export function Hero({ ready }: { ready: boolean }) {
         return () => window.removeEventListener('pointermove', move)
       })
     },
-    { scope: root, dependencies: [ready] },
+    { scope: root },
   )
 
   const chars = (s: string) =>
@@ -112,7 +123,7 @@ export function Hero({ ready }: { ready: boolean }) {
 
       <div className="relative z-10 px-[4vw] pt-[6vh] lg:pt-[4vh]">
         <h1 id="hero-title" className="display text-[clamp(6rem,21vw,21rem)] !leading-[0.93] text-ink">
-          <span className="sr-only">Keisha Agro Farm — organic dragon fruits, from soil to slice.</span>
+          <span className="sr-only">Keisha Agro Farm: organic dragon fruits, from soil to slice.</span>
           <span aria-hidden className="block">
             <span data-line="1" className="flex items-end">
               <span className="inline-flex items-end">
@@ -121,7 +132,7 @@ export function Hero({ ready }: { ready: boolean }) {
                 <span data-fruit-o className="relative mx-[0.015em] mb-[0.005em] inline-block h-[0.86em] w-[0.6em]">
                   <span data-fruit-tilt className="absolute inset-0 block">
                     <span data-fruit-spin className="absolute inset-0 block">
-                      <DragonFruit view="cut" flesh="white" seed={5} shadow={false} className="h-full w-full" title="" />
+                      <DragonFruit view="cut" flesh="red" seed={5} shadow={false} className="h-full w-full" title="" />
                     </span>
                   </span>
                 </span>

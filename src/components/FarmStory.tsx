@@ -25,13 +25,13 @@ export function FarmStory() {
               {
                 clipPath: 'inset(0% 0% 0% 0%)',
                 ease: 'none',
-                scrollTrigger: { trigger: chapters[i], start: 'top bottom', end: 'top 35%', scrub: true },
+                scrollTrigger: { trigger: chapters[i], start: 'top 80%', end: 'top 30%', scrub: true },
               },
             )
             gsap.fromTo(
               f.querySelector('[data-inner]'),
               { scale: 1.3 },
-              { scale: 1, ease: 'none', scrollTrigger: { trigger: chapters[i], start: 'top bottom', end: 'top 35%', scrub: true } },
+              { scale: 1, ease: 'none', scrollTrigger: { trigger: chapters[i], start: 'top 80%', end: 'top 30%', scrub: true } },
             )
           })
           chapters.forEach((c, i) => {
@@ -97,9 +97,9 @@ export function FarmStory() {
             <article key={c.kicker} data-chapter className="flex flex-col justify-center gap-6 border-t border-ivory/15 py-14 lg:min-h-[80vh] lg:py-0">
               <Photo shot={photos.farm[i]} tone={tones[i]} className="aspect-[4/3] w-full lg:hidden" />
               <p data-ctxt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-leaf">
-                0{i + 1} — {c.kicker}
+                0{i + 1} / {c.kicker}
               </p>
-              <h3 data-ctxt className="display text-[clamp(2.8rem,5vw,5rem)]">
+              <h3 data-ctxt className="display text-[clamp(2.8rem,5vw,5rem)] !leading-[1.04]">
                 {c.title}
               </h3>
               <p data-ctxt className="max-w-md text-lg leading-relaxed text-ivory/75">

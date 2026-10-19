@@ -1,6 +1,6 @@
 /**
  * ─────────────────────────────────────────────────────────────
- *  KEISHA AGRO FARM — SITE CONTENT
+ *  KEISHA AGRO FARM: SITE CONTENT
  *  Every business fact on the site lives in this file.
  *  Anything in [square brackets] is a PLACEHOLDER that must be
  *  confirmed or replaced before launch. Do not publish claims
@@ -14,7 +14,7 @@ export const brand = {
   tagline: 'Organic dragon fruits, grown at Keisha Agro Farm.',
   // Short, verified-safe statement used in the hero.
   intro:
-    'Keisha Agro Farm grows organic dragon fruits — the vivid, night-blooming cactus fruit — and sells them directly from the farm. Explore the fruit, see where it comes from, and send us an enquiry.',
+    'Keisha Agro Farm grows organic dragon fruits, the vivid, night-blooming cactus fruit, and sells them directly from the farm. Explore the fruit, see where it comes from, and send us an enquiry.',
 }
 
 /** Contact details. Leave a value as an empty string to hide it. */
@@ -23,8 +23,8 @@ export const contact = {
   phone: '[+00 00000 00000]',
   /** International format, digits only, e.g. "919876543210". Empty = WhatsApp button hidden. */
   whatsapp: '',
-  location: '[Farm location, Region]',
-  season: '[Harvest season — e.g. Month to Month]',
+  location: 'Nimbavi, Shrigonda',
+  season: '[Harvest season, e.g. Month to Month]',
 }
 
 export const socials: { label: string; href: string }[] = [
@@ -41,43 +41,54 @@ export const nav = [
 ]
 
 /**
- * Photography. Drop real files into /public/images and set `src`
- * (e.g. '/images/hero-01.jpg'). While `src` is empty an art-directed
- * placeholder is shown with the `label` so you know what to shoot.
+ * Photography. Optimised copies live in /public/images/opt as
+ * name.webp (large) + name-800.webp (small); `src` points at the large one
+ * and <Photo /> builds the responsive srcset automatically.
+ * `position` is the CSS object-position used when the frame crops the photo.
+ * While `src` is empty an art-directed placeholder is shown with the `label`
+ * so you know which photo is still missing.
  */
-export type Shot = { src: string; alt: string; label: string }
+export type Shot = { src: string; alt: string; label: string; position?: string }
 
-export const photos = {
-  strip: [
-    { src: '', alt: 'Dragon fruit hanging on the cactus at Keisha Agro Farm', label: 'Fruit on the vine' },
-    { src: '', alt: 'Freshly harvested dragon fruits in a crate', label: 'Harvest crate' },
-    { src: '', alt: 'Hands holding a halved dragon fruit', label: 'Halved fruit, in hand' },
-    { src: '', alt: 'Rows of dragon fruit cactus at the farm', label: 'Cactus rows' },
-  ] as Shot[],
-  process: [
-    { src: '', alt: 'The farm land before planting', label: 'The land' },
-    { src: '', alt: 'Young dragon fruit cactus on its support post', label: 'Young cactus' },
-    { src: '', alt: 'Dragon fruit flower open at night', label: 'Night flower' },
-    { src: '', alt: 'Picking ripe dragon fruit', label: 'Picking' },
-    { src: '', alt: 'Dragon fruits being packed', label: 'Packing' },
-    { src: '', alt: 'Packed boxes ready to leave the farm', label: 'Ready to go' },
-  ] as Shot[],
-  farm: [
-    { src: '', alt: 'Wide view of Keisha Agro Farm', label: 'Wide farm view' },
-    { src: '', alt: 'The Keisha Agro Farm team', label: 'The team' },
-    { src: '', alt: 'Ripe dragon fruits during harvest season', label: 'Harvest season' },
-  ] as Shot[],
-  field: [
-    { src: '', alt: 'Dragon fruit close-up', label: 'Skin close-up' },
-    { src: '', alt: 'Cactus at golden hour', label: 'Golden hour' },
-    { src: '', alt: 'Cut fruit on a table', label: 'On the table' },
-    { src: '', alt: 'Bracts of the dragon fruit', label: 'Bract detail' },
-    { src: '', alt: 'A grower inspecting the plants', label: 'Inspecting plants' },
-    { src: '', alt: 'Fruit in packaging', label: 'Packed fruit' },
-  ] as Shot[],
+const img = (name: string) => `/images/opt/${name}.webp`
+
+const shots = {
+  fruit: { src: img('TheFruit'), alt: 'A ripe magenta dragon fruit growing on the cactus at Keisha Agro Farm', label: 'Fruit on the vine', position: '45% 50%' },
+  flower: { src: img('moreFlower'), alt: 'An open dragon fruit flower with a yellow centre, visited by bees', label: 'In bloom', position: '50% 35%' },
+  flowerSky: { src: img('onlyFlower'), alt: 'A dragon fruit flower opening against the sky', label: 'The flower opens', position: '40% 50%' },
+  flowerDried: { src: img('Flowerdried'), alt: 'A spent dragon fruit flower hanging from the cactus after blooming', label: 'After the bloom', position: '50% 40%' },
+  stem: { src: img('CloseupPlant'), alt: 'Close-up of a dragon fruit cactus stem with water droplets', label: 'The cactus', position: '35% 50%' },
+  rows: { src: img('morePlants'), alt: 'Rows of dragon fruit cactus with ripening fruit along a mulched path', label: 'Cactus rows', position: '50% 55%' },
+  wide: { src: img('plants'), alt: 'Wide view across the dragon fruit plantation at Keisha Agro Farm', label: 'The plantation', position: '50% 78%' },
+  planting: { src: img('Plantation'), alt: 'Planting dragon fruit cuttings beside a support post at the farm', label: 'Planting day', position: '50% 45%' },
+  weighing: { src: img('fruitOnScale'), alt: 'Harvested dragon fruits being weighed on a digital scale', label: 'Weighing the harvest', position: '40% 45%' },
+  canopy: { src: img('plant'), alt: 'A dragon fruit cactus trained over its support post, with buds and flowers', label: 'The canopy', position: '50% 55%' },
+  halved: { src: img('DragonHalf'), alt: 'Two halves of a red-fleshed dragon fruit from Keisha Agro Farm, showing the magenta flesh and black seeds', label: 'Halved fruit', position: '50% 62%' },
+  family: { src: img('whoGrowa'), alt: 'The family behind Keisha Agro Farm standing together on the plantation', label: 'Who grows it', position: '45% 60%' },
+  grower: { src: img('withFlower'), alt: 'A grower at Keisha Agro Farm smiling beside a dragon fruit flower', label: 'The people', position: '50% 12%' },
 }
 
-/** Anatomy chapters — general botanical facts about dragon fruit (pitaya). */
+/** Still needed: see README "Photos still missing" */
+const todo = {
+    dispatch: { src: '', alt: 'Packed boxes ready to leave the farm', label: 'Ready to go' },
+}
+
+export const photos = {
+  /** Tilted strip in the hero */
+  strip: [shots.fruit, shots.flower, shots.halved, shots.rows] as Shot[],
+  /** Who-we-are section: large frame + small overlapping frame */
+  intro: [shots.rows, shots.halved] as Shot[],
+  /** Thumbnails under the product details */
+  product: [shots.halved, shots.fruit, shots.weighing] as Shot[],
+  /** Indexed by `process[].shots` */
+  process: [shots.planting, shots.canopy, shots.flower, shots.fruit, shots.weighing, todo.dispatch] as Shot[],
+  /** Farm story chapters: Land, People, Season */
+  farm: [shots.wide, shots.family, shots.fruit] as Shot[],
+  /** Photo wall */
+  field: [shots.stem, shots.flowerSky, shots.halved, shots.planting, shots.canopy, shots.weighing] as Shot[],
+}
+
+/** Anatomy chapters: general botanical facts about dragon fruit (pitaya). */
 export const anatomy = [
   {
     no: '01',
@@ -94,7 +105,7 @@ export const anatomy = [
   {
     no: '03',
     title: 'Speckled within',
-    body: 'Cut it open and the flesh is white or deep magenta, depending on the variety, flecked with tiny black seeds you eat along with it.',
+    body: 'Cut ours open and the flesh is a deep, vivid magenta, flecked with tiny black seeds you eat along with it.',
     view: 'cut' as const,
   },
 ]
@@ -104,20 +115,19 @@ export const anatomy = [
  * Remove any entry you do not sell.
  */
 export const varieties = [
-  { name: '[Variety name]', flesh: 'red' as const, note: '[Short description — taste, colour, size]' },
-  { name: '[Variety name]', flesh: 'white' as const, note: '[Short description — taste, colour, size]' },
+  { name: '[Variety name]', flesh: 'red' as const, note: '[Short description: taste, colour, size]' },
 ]
 
 /** Product spec rows. Fill in only what is confirmed. */
 export const specs = [
-  { label: 'Grown at', value: '[Farm location]' },
+  { label: 'Grown at', value: 'Nimbavi, Shrigonda' },
   { label: 'Sizes / grades', value: '[e.g. by weight per fruit]' },
   { label: 'Packaging', value: '[e.g. box sizes]' },
-  { label: 'Order types', value: '[Retail / Bulk — confirm]' },
+  { label: 'Order types', value: '[Retail / Bulk, to confirm]' },
   { label: 'Pricing', value: 'On request' },
 ]
 
-/** Cultivation process — general steps; replace bracketed text with your practice. */
+/** Cultivation process: general steps; replace bracketed text with your practice. */
 export const process = [
   {
     no: '01',
@@ -155,7 +165,7 @@ export const farmStory = [
   {
     kicker: 'The People',
     title: 'Who grows it',
-    body: '[Introduce the family or team behind the farm — who they are and how they started growing dragon fruit.]',
+    body: '[Introduce the family or team behind the farm: who they are and how they started growing dragon fruit.]',
   },
   {
     kicker: 'The Season',
@@ -166,10 +176,10 @@ export const farmStory = [
 
 /** Differentiators. Keep only what is true. */
 export const reasons = [
-  { no: '01', title: 'Straight from the grower', body: 'You deal with the farm that grows the fruit — no middle layer between field and enquiry.' },
+  { no: '01', title: 'Straight from the grower', body: 'You deal with the farm that grows the fruit, with no middle layer between field and enquiry.' },
   { no: '02', title: 'Grown organically', body: '[Describe your organic practices. Name a certification only if you hold one.]' },
   { no: '03', title: 'Retail & bulk', body: '[Confirm the order types and quantities you can supply.]' },
-  { no: '04', title: '[Your differentiator]', body: '[Freshness, varieties, packaging or distribution — whatever is genuinely yours.]' },
+  { no: '04', title: '[Your differentiator]', body: '[Freshness, varieties, packaging or distribution, whatever is genuinely yours.]' },
 ]
 
 export const enquiryTypes = ['Retail order', 'Bulk / wholesale', 'Availability', 'Something else']

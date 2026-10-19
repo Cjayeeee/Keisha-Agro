@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP)
 
-/** Shared motion language — one place to tune the whole site. */
+/** Shared motion language: one place to tune the whole site. */
 export const ease = {
   out: 'expo.out',
   inOut: 'power4.inOut',

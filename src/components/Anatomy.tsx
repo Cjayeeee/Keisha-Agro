@@ -4,8 +4,8 @@ import { revealLines } from '../lib/reveal'
 import { anatomy } from '../content'
 import { DragonFruit } from './DragonFruit'
 
-const panelTone = ['bg-forest text-ivory', 'bg-sand text-ink', 'bg-pitaya text-ivory']
-const numTone = ['text-leaf', 'text-pitaya', 'text-ivory/60']
+const panelTone = ['bg-forest text-ivory', 'bg-sand text-ink', 'bg-leaf text-ink']
+const numTone = ['text-leaf', 'text-pitaya', 'text-forest-deep/60']
 
 /**
  * Horizontal storytelling on desktop (pinned, scrubbed). The row layout is
@@ -85,7 +85,7 @@ export function Anatomy() {
   )
 
   return (
-    <section ref={root} id="fruit" aria-labelledby="fruit-title" className="anat relative overflow-hidden bg-ivory">
+    <section ref={root} id="fruit" aria-labelledby="fruit-title" data-cursor="Scroll" className="anat relative overflow-hidden bg-ivory">
       <div ref={track} className="anat-track flex flex-col">
         {/* Intro panel */}
         <div className="anat-panel anat-intro flex flex-col justify-between gap-16 px-[4vw] py-[14vh]">
@@ -98,7 +98,7 @@ export function Anatomy() {
             <span className="serif-i text-pitaya">up close.</span>
           </h2>
           <p className="max-w-md text-lg leading-relaxed text-mute">
-            Dragon fruit — also called pitaya — grows on a climbing cactus. Three details make it unlike any other fruit.
+            Dragon fruit, also called pitaya, grows on a climbing cactus. Three details make it unlike any other fruit.
             <span className="mt-4 hidden items-center gap-3 font-display text-base uppercase text-ink lg:flex">
               Keep scrolling <span aria-hidden>→</span>
             </span>
@@ -113,14 +113,14 @@ export function Anatomy() {
             <div data-art className="pointer-events-none my-8 flex justify-center lg:absolute lg:right-[4vw] lg:top-1/2 lg:my-0 lg:h-[64vh] lg:-translate-y-1/2">
               <DragonFruit
                 view={a.view}
-                flesh={i === 2 ? 'white' : 'red'}
+                flesh="red"
                 seed={20 + i}
                 shadow={false}
                 className="h-[44vh] w-auto max-w-full drop-shadow-[0_30px_40px_rgba(0,0,0,0.18)] lg:h-full"
               />
             </div>
             <div className="relative max-w-[26rem]">
-              <h3 data-ptxt className="display text-[clamp(2.6rem,4.6vw,4.6rem)]">
+              <h3 data-ptxt className="display text-[clamp(2.6rem,4.6vw,4.6rem)] !leading-[1.15]">
                 {a.title}
               </h3>
               <p data-ptxt className="mt-5 text-[1.05rem] leading-relaxed opacity-80">

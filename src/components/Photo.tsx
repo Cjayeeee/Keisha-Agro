@@ -32,8 +32,10 @@ export function Photo({ shot, tone = 'sand', className = '', motif = false, size
         {shot.src ? (
           <img
             src={shot.src}
+            srcSet={/\/images\/opt\/.+\.webp$/.test(shot.src) ? `${shot.src.replace(/\.webp$/, '-800.webp')} 800w, ${shot.src} 1600w` : undefined}
             alt={shot.alt}
             sizes={sizes}
+            style={shot.position ? { objectPosition: shot.position } : undefined}
             loading={eager ? 'eager' : 'lazy'}
             decoding="async"
             className="h-full w-full object-cover"

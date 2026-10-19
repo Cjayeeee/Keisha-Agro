@@ -1,4 +1,4 @@
-/** Typographic wordmark — PLACEHOLDER until the real Keisha Agro Farm logo is supplied. */
+/** Typographic wordmark. PLACEHOLDER until the real Keisha Agro Farm logo is supplied. */
 export function Logo({ light = false, className = '' }: { light?: boolean; className?: string }) {
   return (
     <span role="img" aria-label="Keisha Agro Farm" className={`inline-flex items-end gap-2 leading-none ${light ? 'text-ivory' : 'text-ink'} ${className}`}>

@@ -46,7 +46,7 @@ export function Why() {
                 </span>
               </span>
               <div className="pt-2">
-                <h3 data-wtxt className="display text-[clamp(1.9rem,2.8vw,2.8rem)]">
+                <h3 data-wtxt className="display text-[clamp(1.9rem,2.8vw,2.8rem)] !leading-[1.06]">
                   {r.title}
                 </h3>
                 <p data-wtxt className="mt-3 max-w-sm leading-relaxed text-mute">

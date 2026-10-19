@@ -14,6 +14,7 @@ import { Field } from './components/Field'
 import { Why } from './components/Why'
 import { Enquiry } from './components/Enquiry'
 import { Footer } from './components/Footer'
+import { Cursor } from './components/Cursor'
 
 function shouldPlayIntro() {
   if (typeof window === 'undefined') return false
@@ -35,22 +36,22 @@ export default function App() {
     document.fonts?.ready.then(() => ScrollTrigger.refresh())
   }, [])
 
-  const done = () => {
+  const reveal = () => {
     try {
       sessionStorage.setItem('kaf-intro', '1')
     } catch {
-      /* storage unavailable — fine */
+      /* storage unavailable, fine */
     }
-    setShowLoader(false)
     setReady(true)
   }
+  const done = () => setShowLoader(false)
 
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:bg-ink focus:px-4 focus:py-3 focus:text-ivory">
         Skip to content
       </a>
-      {showLoader && <Preloader onDone={done} />}
+      {showLoader && <Preloader onReveal={reveal} onDone={done} />}
       <Header ready={ready} />
       <main id="main">
         <Hero ready={ready} />
@@ -66,6 +67,7 @@ export default function App() {
         <Enquiry />
       </main>
       <Footer />
+      <Cursor />
     </>
   )
 }

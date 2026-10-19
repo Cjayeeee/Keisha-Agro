@@ -28,16 +28,29 @@ export function Header({ ready }: { ready: boolean }) {
     return () => st.kill()
   }, [open])
 
-  // Entrance once the preloader is done
+  // Entrance: primed on mount (hidden under the preloader), played when ready
+  const intro = useRef<gsap.core.Timeline | null>(null)
+  const readyRef = useRef(ready)
+  readyRef.current = ready
+  useEffect(() => {
+    if (ready) intro.current?.play()
+  }, [ready])
   useGSAP(
     () => {
-      if (!ready) return
       const mm = gsap.matchMedia()
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('[data-nav-in]', { yPercent: -120, autoAlpha: 0, duration: 1, ease: ease.out, stagger: 0.06, delay: 0.5 })
+        intro.current = gsap.timeline({ paused: true }).from('[data-nav-in]', {
+          yPercent: -120,
+          autoAlpha: 0,
+          duration: 1,
+          ease: ease.out,
+          stagger: 0.06,
+          delay: 0.35,
+        })
+        if (readyRef.current) intro.current.play()
       })
     },
-    { scope: root, dependencies: [ready] },
+    { scope: root },
   )
 
   useEffect(() => {
